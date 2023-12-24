@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+</head>
+
+<!-- input으로 도시를 받아고 날씨가져오기를 누르면 온도 가져오기 -->
+
+<body>
+    <h1>오늘의 전주날씨</h1>
+    <input id="city" type="text" value="">
+    <button onclick="getWeather()">날씨가져오기</button>
+    <p id="temperature"></p>
+    <script>
+        function getWeather() {
+            let city = document.getElementById("city").value;
+            fetch("https://goweather.herokuapp.com/weather/" + city)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('temperature').innerHTML =
+                        data['temperature'];
+                });
+        }
+    </script>
+</body>
+
+</html>
